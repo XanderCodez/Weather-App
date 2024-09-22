@@ -53,7 +53,6 @@ input {
 
 input:hover {
    background-color: rgba(160, 160, 160, 0.281);
-   cursor: pointer;
 }
 
 .last-search {
