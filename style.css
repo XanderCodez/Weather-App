@@ -1,0 +1,148 @@
+body {
+   background-image: url(Images/background.jpg);
+   background-repeat: repeat;
+   background-size: 50%;
+   font-family: "Montserrat";
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   color: w;
+}
+
+.main-container {
+   background: linear-gradient(160deg, #006eff85, rgba(251, 255, 0, 0.5));
+   border-radius: 20px;
+   backdrop-filter: blur(8px);
+   padding: 50px;
+}
+
+.search-bar {
+   display: flex;
+   align-items: center;
+}
+
+.search-bar :placeholder-shown {
+   font-weight: 550;
+   text-transform: uppercase;
+}
+
+.search-bar button {
+   font-size: 25px;
+   border: none;
+   border-radius: 10px;
+   padding: 6px;
+   color: #00000071;
+   transition: all ease 0.2s;
+}
+
+.search-bar button:hover {
+   color: #0077ff;
+   cursor: pointer;
+   background-color: #00000085;
+}
+
+input {
+   margin: 10px;
+   border: none;
+   border-radius: 10px;
+   padding: 10px;
+   transition: all ease 0.2s;
+}
+
+input:hover {
+   background-color: rgba(160, 160, 160, 0.281);
+   cursor: pointer;
+}
+
+.last-search {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+
+.last-search h2 {
+   margin: 3px;
+}
+
+.last-search a {
+   color: rgba(255, 255, 255, 0.7);
+   text-decoration: none;
+   transition: all ease 0.2s;
+   margin: 0;
+}
+
+.last-search a:hover {
+   color: rgb(255, 255, 255);
+   text-shadow: 0px 0px 25px #ffffff;
+   cursor: pointer;
+}
+
+.invalid-location img,
+.invalid-location,
+.last-search p {
+   max-height: 120px;
+   font-weight: 600;
+}
+
+#locationDot {
+   font-size: 40px;
+   color: #ffffff;
+   transition: all ease 0.3s;
+}
+
+#locationDot:hover {
+   color: #0077ff71;
+   cursor: pointer;
+}
+
+.weather-display {
+   font-weight: 600;
+   font-size: 2rem;
+}
+
+.weather-icon {
+   max-width: 200px;
+   filter: drop-shadow(0px 5px 5px #00000065);
+}
+
+.weather-display h1 {
+   color: white;
+   text-transform: uppercase;
+   letter-spacing: 3px;
+}
+
+.weather-display button {
+   text-transform: uppercase;
+   font-size: 18px;
+   border: none;
+   border-radius: 10px;
+   padding: 5px;
+   color: #000000ce;
+   background-color: #ffc74e;
+   transition: all ease 0.2s;
+}
+
+.weather-display button:hover {
+   cursor: pointer;
+   background-color: #eea300;
+}
+
+.weather-details {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   margin-top: 30px;
+   font-size: 20px;
+   padding: 10px;
+}
+
+.weather-details p1 {
+   font-weight: 500;
+}
+
+.weather-details p2 {
+   font-size: 2.5rem;
+   font-weight: 600;
+}
