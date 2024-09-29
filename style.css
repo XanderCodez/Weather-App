@@ -1,26 +1,23 @@
 body {
-   background-image: url(Images/background.jpg);
-   background-repeat: repeat;
-   background-size: 50%;
+   background-image: linear-gradient(180deg, #ff000094 0%, #ffff0083 100%);
+   background-attachment: fixed;
    font-family: "Montserrat";
    text-align: center;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   color: w;
+   margin: 0;
+   overflow-x: hidden;
 }
 
-.main-container {
-   background: linear-gradient(160deg, #006eff85, rgba(251, 255, 0, 0.5));
-   border-radius: 20px;
-   backdrop-filter: blur(8px);
-   padding: 50px;
+img {
+   max-width: 200px;
+   filter: drop-shadow(0px 5px 5px #000000a5);
 }
 
 .search-bar {
+   margin-top: 20px;
    display: flex;
    align-items: center;
+   justify-items: center;
+   justify-content: center;
 }
 
 .search-bar :placeholder-shown {
@@ -33,17 +30,17 @@ body {
    border: none;
    border-radius: 10px;
    padding: 6px;
-   color: #00000071;
+   color: #000000b5;
    transition: all ease 0.2s;
 }
 
 .search-bar button:hover {
-   color: #0077ff;
+   color: #00b7ff;
    cursor: pointer;
-   background-color: #00000085;
 }
 
 input {
+   box-shadow: 0px 2px 8px #00000098;
    margin: 10px;
    border: none;
    border-radius: 10px;
@@ -52,13 +49,7 @@ input {
 }
 
 input:hover {
-   background-color: rgba(160, 160, 160, 0.281);
-}
-
-.last-search {
-   display: flex;
-   align-items: center;
-   flex-direction: column;
+   background-color: #87ddff;
 }
 
 .last-search h2 {
@@ -66,23 +57,23 @@ input:hover {
 }
 
 .last-search a {
-   color: rgba(255, 255, 255, 0.7);
+   color: #ffffffb5;
    text-decoration: none;
    transition: all ease 0.2s;
    margin: 0;
 }
 
 .last-search a:hover {
-   color: rgb(255, 255, 255);
-   text-shadow: 0px 0px 25px #ffffff;
+   color: #ffffff;
    cursor: pointer;
 }
 
-.invalid-location img,
-.invalid-location,
+.invalid-search img,
+.invalid-search,
 .last-search p {
-   max-height: 120px;
-   font-weight: 600;
+   font-size: 1.25rem;
+   font-weight: 700;
+   color: #00000099;
 }
 
 #locationDot {
@@ -92,8 +83,15 @@ input:hover {
 }
 
 #locationDot:hover {
-   color: #0077ff71;
+   color: #0077ffb5;
    cursor: pointer;
+}
+
+.large-text {
+   color: #ffffff;
+   text-shadow: 0px 2px 4px #00000094;
+   font-size: 4rem;
+   margin-bottom: 0;
 }
 
 .weather-display {
@@ -101,13 +99,8 @@ input:hover {
    font-size: 2rem;
 }
 
-.weather-icon {
-   max-width: 200px;
-   filter: drop-shadow(0px 5px 5px #00000065);
-}
-
 .weather-display h1 {
-   color: white;
+   color: #ffffff;
    text-transform: uppercase;
    letter-spacing: 3px;
 }
@@ -121,6 +114,7 @@ input:hover {
    color: #000000ce;
    background-color: #ffc74e;
    transition: all ease 0.2s;
+   box-shadow: 0px 2px 8px #00000098;
 }
 
 .weather-display button:hover {
@@ -130,8 +124,6 @@ input:hover {
 
 .weather-details {
    width: 100%;
-   display: flex;
-   justify-content: space-between;
    margin-top: 30px;
    font-size: 20px;
    padding: 10px;
@@ -144,4 +136,26 @@ input:hover {
 .weather-details p2 {
    font-size: 2.5rem;
    font-weight: 600;
+}
+
+input[type="radio"] {
+   appearance: none;
+   width: 20px;
+   height: 20px;
+   border: 2px solid #000000;
+   border-radius: 50%;
+   outline: none;
+   cursor: pointer;
+   margin-right: 5px;
+}
+input[type="radio"]:checked {
+   background-color: #0000007a;
+}
+
+.convert {
+   font-size: 20px;
+   margin-top: 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }

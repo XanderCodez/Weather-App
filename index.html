@@ -8,52 +8,53 @@
       <link rel="icon" type="image/png" href="Images/icon.png" />
       <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
       <script src="https://kit.fontawesome.com/b5fba243a8.js" crossorigin="anonymous"></script>
+      <script src="Weather.js"></script>
    </head>
    <body>
-      <div class="main-container">
-         <div class="search-bar">
-            <i id="locationDot" class="fa-solid fa-location-dot"></i>
-            <input type="text" placeholder="Enter your city" />
-            <button type="button" class="fa-duotone fa-solid fa-magnifying-glass"></button>
-         </div>
-
-         <div class="last-search" style="display: none">
-            <p>Recent Search</p>
-            <a href=""><h2>Cairo</h2></a>
-            <a href=""><h2>Alexandria</h2></a>
-            <a href=""><h2>Tanta</h2></a>
-         </div>
-
-         <div class="invalid-location" style="display: none">
-            <img src="Images/invalid-location.png" /> <br />
-            <p3>Please enter a valid location</p3>
-         </div>
-
+      <div class="search-bar">
+         <i type="button" id="locationDot" class="fa-solid fa-location-dot" style="display: none"></i>
+         <input type="text" placeholder="Enter your city" id="CityInput" />
+         <button type="button" id="CityBtn">Get Weather</button>
+      </div>
+      <div id="WelcomeMsg" style="display: block">
+         <h1 class="large-text">Search for a city</h1>
+         <h2>Enter city name or use Location</h2>
+      </div>
+      <div class="last-search" style="display: none">
+         <p>Recent Search</p>
+         <a href=""><h2>Cairo</h2></a>
+         <a href=""><h2>Alexandria</h2></a>
+         <a href=""><h2>Tanta</h2></a>
+      </div>
+      <div class="invalid-search" style="display: none">
+         <img src="Images/invalid-location.png" /> <br />
+         <p>Invalid search, try again!</p>
+      </div>
+      <div id="MainContainer" style="display: none">
          <div class="weather-display">
-            <h1>Cairo</h1>
-            <img src="Images/clear.png" class="weather-icon" />
-            <p>Clear Sky</p>
-            <p>25°</p>
-            <button><b>°F</b>ahrenheit</button>
-            <button><b>°C</b>elsius</button>
-         </div>
+            <h1 id="CityDisplay" class="large-text">Cairo</h1>
+            <img id="IconDisplay" src="" class="weather-icon" />
+            <p id="SkyDisplay">Clear Sky</p>
+            <p id="TemperatureDisplay">25°</p>
 
-         <div class="weather-details">
-            <div>
-               <i class="fa-solid fa-water"></i>
-               <p1>Humidity</p1> <br />
-               <p2>55%</p2>
+            <div class="convert">
+               <input type="radio" id="FahrenheitBtn" name="unit" />
+               <label for="FahrenheitBtn">Fahrenheit</label>
+
+               <input type="radio" id="CelsiusBtn" name="unit" />
+               <label for="CelsiusBtn">Celsius</label>
             </div>
 
-            <div>
-               <i class="fa-solid fa-wind"></i>
-               <p1>Wind Speed</p1>
-               <br />
-               <p2>4Km/k</p2>
+            <button id="ConvertBtn">convert</button>
+
+            <div class="weather-details">
+               <div>
+                  <i class="fa-solid fa-water"></i>
+                  <p1>Humidity</p1> <br />
+                  <p2 id="HumidityDisplay">55%</p2>
+               </div>
             </div>
          </div>
       </div>
-
-      <script src="Weather.js"></script>
    </body>
 </html>
