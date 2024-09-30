@@ -1,3 +1,6 @@
+// // TODO: Get Weather by Location
+// TODO: Save user recent search?
+
 $(document).ready(function () {
    const INPUT = {
       LOCATION_FIELD: $("#CityInput"),
@@ -10,8 +13,8 @@ $(document).ready(function () {
 
    const DISPLAY = {
       WELCOME_MESSAGE: $("#WelcomeMsg"),
-      RECENT_SEARCHES: $(`.last-search`),
-      ERROR_MESSAGE: $(`.invalid-search`),
+      RECENT_SEARCHES: $("#LastSearch"),
+      ERROR_MESSAGE: $("#InvalidSearch"),
       WEATHER_CONTAINER: $("#MainContainer"),
       CITY_NAME: $("#CityDisplay"),
       WEATHER_ICON: $("#IconDisplay"),
@@ -22,6 +25,49 @@ $(document).ready(function () {
 
    const API_KEY = "58aee28527bdf3c3ee2286a85c98202e";
 
+   const getWeatherByLocation = async (lat, lon) => {
+      const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+
+      const RESPONSE = await fetch(API_URL);
+
+      if (!RESPONSE.ok) {
+         console.error("Could not fetch from location");
+      }
+      return await RESPONSE.json();
+   };
+
+   INPUT.LOCATION_BTN.click(() => {
+      const successCallback = async (postion) => {
+         const { latitude, longitude } = postion.coords;
+
+         try {
+            const WEATHER_DATA = await getWeatherByLocation(latitude, longitude);
+            displayWeatherInfo(WEATHER_DATA);
+            displayError("", "none");
+         } catch (error) {
+            console.error(error);
+            displayError("Invalid location", "block");
+         }
+      };
+
+      const errorCallback = (error) => {
+         console.error(error);
+      };
+
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+   });
+
+   const getWeatherData = async (city) => {
+      const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+
+      const RESPONSE = await fetch(API_URL);
+
+      if (!RESPONSE.ok) {
+         console.error("Could not fetch");
+      }
+      return await RESPONSE.json();
+   };
+
    INPUT.SUBMIT_BTN.click(async () => {
       const CITY = INPUT.LOCATION_FIELD.val();
 
@@ -31,7 +77,7 @@ $(document).ready(function () {
             displayWeatherInfo(WEATHER_DATA);
             displayError("", "none");
          } catch (error) {
-            console.error(`Catch: ${error}`);
+            console.error(error);
             displayError(error, "block");
          }
       } else {
@@ -40,19 +86,7 @@ $(document).ready(function () {
       }
    });
 
-   async function getWeatherData(city) {
-      const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
-
-      const RESPONSE = await fetch(API_URL);
-
-      if (!RESPONSE.ok) {
-         console.error("Could not fetch");
-      }
-
-      return await RESPONSE.json();
-   }
-
-   function displayWeatherInfo(data) {
+   const displayWeatherInfo = (data) => {
       const {
          name: cityName,
          main: { temp, humidity },
@@ -63,7 +97,7 @@ $(document).ready(function () {
       DISPLAY.WEATHER_CONTAINER.css("display", "block");
       DISPLAY.SKY_CONDITION.text(description.charAt(0).toUpperCase() + description.slice(1));
       DISPLAY.CITY_NAME.text(cityName);
-      DISPLAY.TEMPERATURE_VALUE.text(`${Math.ceil(temp - 273.15)}°C`);
+      DISPLAY.TEMPERATURE_VALUE.text(`${Math.floor(temp - 273.15)}°C`);
       DISPLAY.HUMIDITY_LEVEL.text(`${humidity}%`);
 
       displayWeahterIcon(id);
@@ -75,13 +109,13 @@ $(document).ready(function () {
             celsiusTemp = (celsiusTemp * 9) / 5 + 32;
             DISPLAY.TEMPERATURE_VALUE.text(`${celsiusTemp}°F`);
          } else if (INPUT.CELSIUS_BTN.is(":checked")) {
-            celsiusTemp = Math.ceil(temp - 273.15);
+            celsiusTemp = Math.floor(temp - 273.15);
             DISPLAY.TEMPERATURE_VALUE.text(`${celsiusTemp}°C`);
          }
       });
-   }
+   };
 
-   function displayWeahterIcon(weatherId) {
+   const displayWeahterIcon = (weatherId) => {
       switch (true) {
          case weatherId >= 200 && weatherId < 300:
             DISPLAY.WEATHER_ICON.attr("src", "Images/lightning.png");
@@ -111,13 +145,13 @@ $(document).ready(function () {
             DISPLAY.WEATHER_ICON.attr("src", "Images/cloudy.png");
             break;
       }
-   }
+   };
 
-   function displayError(error, dispaly) {
+   const displayError = (error, dispaly) => {
       DISPLAY.ERROR_MESSAGE.css("display", dispaly);
       DISPLAY.WELCOME_MESSAGE.css("display", "none");
       if (error) {
          console.error(error);
       }
-   }
+   };
 });

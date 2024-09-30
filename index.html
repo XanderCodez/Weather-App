@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>What the Fog?</title>
+      <title>What the Fog</title>
       <link rel="stylesheet" href="style.css" />
       <link rel="icon" type="image/png" href="Images/icon.png" />
       <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -12,21 +12,18 @@
    </head>
    <body>
       <div class="search-bar">
-         <i type="button" id="locationDot" class="fa-solid fa-location-dot" style="display: none"></i>
+         <a type="button" id="locationDot" class="fa-solid fa-location-dot"></a>
          <input type="text" placeholder="Enter your city" id="CityInput" />
-         <button type="button" id="CityBtn">Get Weather</button>
+         <button type="button" id="CityBtn">🔍</button>
       </div>
       <div id="WelcomeMsg" style="display: block">
          <h1 class="large-text">Search for a city</h1>
-         <h2>Enter city name or use Location</h2>
       </div>
-      <div class="last-search" style="display: none">
+      <div class="last-search" id="LastSearch" style="display: none">
          <p>Recent Search</p>
-         <a href=""><h2>Cairo</h2></a>
-         <a href=""><h2>Alexandria</h2></a>
-         <a href=""><h2>Tanta</h2></a>
+         <a href="">test</a>
       </div>
-      <div class="invalid-search" style="display: none">
+      <div class="invalid-search" id="InvalidSearch" style="display: none">
          <img src="Images/invalid-location.png" /> <br />
          <p>Invalid search, try again!</p>
       </div>
