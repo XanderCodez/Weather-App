@@ -1,7 +1,6 @@
-// // TODO: Get Weather by Location
-// TODO: Save user recent search?
+$(document).ready(() => {
+   const API_KEY = "58aee28527bdf3c3ee2286a85c98202e";
 
-$(document).ready(function () {
    const INPUT = {
       LOCATION_FIELD: $("#CityInput"),
       SUBMIT_BTN: $("#CityBtn"),
@@ -13,8 +12,9 @@ $(document).ready(function () {
 
    const DISPLAY = {
       WELCOME_MESSAGE: $("#WelcomeMsg"),
-      RECENT_SEARCHES: $("#LastSearch"),
       ERROR_MESSAGE: $("#InvalidSearch"),
+      RECENT_SEARCH: $("#RecentSearches"),
+      SEARCH_LIST: $("#SearchList"),
       WEATHER_CONTAINER: $("#MainContainer"),
       CITY_NAME: $("#CityDisplay"),
       WEATHER_ICON: $("#IconDisplay"),
@@ -23,99 +23,69 @@ $(document).ready(function () {
       HUMIDITY_LEVEL: $("#HumidityDisplay")
    };
 
-   const API_KEY = "58aee28527bdf3c3ee2286a85c98202e";
+   const displayError = (error, dispaly) => {
+      DISPLAY.ERROR_MESSAGE.css("display", dispaly);
 
-   const getWeatherByLocation = async (lat, lon) => {
-      const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+      DISPLAY.WELCOME_MESSAGE.css("display", "none");
 
-      const RESPONSE = await fetch(API_URL);
-
-      if (!RESPONSE.ok) {
-         console.error("Could not fetch from location");
-      }
-      return await RESPONSE.json();
+      if (error) console.error(error);
    };
 
-   INPUT.LOCATION_BTN.click(() => {
-      const successCallback = async (postion) => {
-         const { latitude, longitude } = postion.coords;
+   const displayRecentSearch = () => {
+      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
 
-         try {
-            const WEATHER_DATA = await getWeatherByLocation(latitude, longitude);
-            displayWeatherInfo(WEATHER_DATA);
-            displayError("", "none");
-         } catch (error) {
-            console.error(error);
-            displayError("Invalid location", "block");
-         }
-      };
+      DISPLAY.SEARCH_LIST.empty();
 
-      const errorCallback = (error) => {
-         console.error(error);
-      };
+      if (recentSearches.length === 0) DISPLAY.RECENT_SEARCH.hide();
 
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-   });
+      recentSearches.forEach((city) => {
+         city = city.charAt(0).toUpperCase() + city.slice(1);
+         DISPLAY.SEARCH_LIST.append(`<a>${city}</a>`);
+      });
+
+      DISPLAY.SEARCH_LIST.on("click", "a", function () {
+         const city = $(this).text();
+         getWeatherData(city).then((data) => {
+            displayWeatherInfo(data);
+         });
+      });
+   };
+
+   const saveSearch = (city) => {
+      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
+
+      if (!recentSearches.includes(city)) recentSearches.unshift(city);
+
+      if (recentSearches.length > 5) recentSearches.pop(); // Corrected condition
+
+      localStorage.setItem("recentSearch", JSON.stringify(recentSearches));
+   };
 
    const getWeatherData = async (city) => {
       const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
 
       const RESPONSE = await fetch(API_URL);
 
-      if (!RESPONSE.ok) {
-         console.error("Could not fetch");
+      if (RESPONSE.ok) {
+         saveSearch(city);
+      } else {
+         console.error("Fetching Failed!");
       }
+
       return await RESPONSE.json();
    };
 
-   INPUT.SUBMIT_BTN.click(async () => {
-      const CITY = INPUT.LOCATION_FIELD.val();
+   const getWeatherByLocation = async (lat, lon) => {
+      const API_URL_LOCATION = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
-      if (CITY) {
-         try {
-            const WEATHER_DATA = await getWeatherData(CITY);
-            displayWeatherInfo(WEATHER_DATA);
-            displayError("", "none");
-         } catch (error) {
-            console.error(error);
-            displayError(error, "block");
-         }
-      } else {
-         displayError("", "block");
-         DISPLAY.WEATHER_CONTAINER.css("display", "none");
-      }
-   });
+      const RESPONSE = await fetch(API_URL_LOCATION);
 
-   const displayWeatherInfo = (data) => {
-      const {
-         name: cityName,
-         main: { temp, humidity },
-         weather: [{ description, id }]
-      } = data;
+      if (!RESPONSE.ok) console.error("Could not fetch from Location");
 
-      DISPLAY.WELCOME_MESSAGE.css("display", "none");
-      DISPLAY.WEATHER_CONTAINER.css("display", "block");
-      DISPLAY.SKY_CONDITION.text(description.charAt(0).toUpperCase() + description.slice(1));
-      DISPLAY.CITY_NAME.text(cityName);
-      DISPLAY.TEMPERATURE_VALUE.text(`${Math.floor(temp - 273.15)}°C`);
-      DISPLAY.HUMIDITY_LEVEL.text(`${humidity}%`);
-
-      displayWeahterIcon(id);
-
-      INPUT.CONVERT.click(() => {
-         let celsiusTemp = Math.ceil(temp - 273.15);
-
-         if (INPUT.FAHRENHEIT_BTN.is(":checked")) {
-            celsiusTemp = (celsiusTemp * 9) / 5 + 32;
-            DISPLAY.TEMPERATURE_VALUE.text(`${celsiusTemp}°F`);
-         } else if (INPUT.CELSIUS_BTN.is(":checked")) {
-            celsiusTemp = Math.floor(temp - 273.15);
-            DISPLAY.TEMPERATURE_VALUE.text(`${celsiusTemp}°C`);
-         }
-      });
+      return await RESPONSE.json();
    };
 
-   const displayWeahterIcon = (weatherId) => {
+   const displayWeatherIcon = (weatherId) => {
       switch (true) {
          case weatherId >= 200 && weatherId < 300:
             DISPLAY.WEATHER_ICON.attr("src", "Images/lightning.png");
@@ -147,11 +117,75 @@ $(document).ready(function () {
       }
    };
 
-   const displayError = (error, dispaly) => {
-      DISPLAY.ERROR_MESSAGE.css("display", dispaly);
+   const displayWeatherInfo = (data) => {
+      const {
+         name: cityName,
+         main: { temp, humidity },
+         weather: [{ description, id }]
+      } = data;
+
       DISPLAY.WELCOME_MESSAGE.css("display", "none");
-      if (error) {
-         console.error(error);
-      }
+      DISPLAY.WEATHER_CONTAINER.hide();
+      DISPLAY.WEATHER_CONTAINER.fadeIn(500);
+      DISPLAY.SKY_CONDITION.text(description.charAt(0).toUpperCase() + description.slice(1));
+      DISPLAY.CITY_NAME.text(cityName);
+      DISPLAY.TEMPERATURE_VALUE.text(`${Math.floor(temp - 273.15)}°C`);
+      DISPLAY.HUMIDITY_LEVEL.text(`${humidity}%`);
+
+      displayWeatherIcon(id);
+
+      INPUT.CONVERT.click(() => {
+         let celsiusTemp = Math.ceil(temp - 273.15);
+
+         if (INPUT.FAHRENHEIT_BTN.is(":checked")) {
+            celsiusTemp = (celsiusTemp * 9) / 5 + 32;
+            DISPLAY.TEMPERATURE_VALUE.text(`${celsiusTemp}°F`);
+         } else {
+            celsiusTemp = Math.floor(temp - 273.15);
+            DISPLAY.TEMPERATURE_VALUE.text(`${celsiusTemp}°C`);
+         }
+      });
    };
+
+   INPUT.LOCATION_BTN.click(() => {
+      const successCallback = async (postion) => {
+         const { latitude, longitude } = postion.coords;
+
+         try {
+            const WEATHER_BY_LOCATION = await getWeatherByLocation(latitude, longitude);
+
+            displayWeatherInfo(WEATHER_BY_LOCATION);
+            displayError("", "none");
+         } catch (error) {
+            console.error(error);
+
+            displayError("Invalid location", "block");
+         }
+      };
+
+      const errorCallback = (error) => {
+         console.error(error);
+      };
+
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+   });
+
+   INPUT.SUBMIT_BTN.click(async () => {
+      const CITY = INPUT.LOCATION_FIELD.val();
+
+      if (CITY) {
+         try {
+            const WEATHER_DATA = await getWeatherData(CITY);
+            displayWeatherInfo(WEATHER_DATA);
+            displayError("", "none");
+         } catch (error) {
+            console.error(error);
+            displayError(error, "block");
+         }
+      } else {
+         displayError("", "block");
+         DISPLAY.WEATHER_CONTAINER.css("display", "none");
+      }
+   });
+   displayRecentSearch();
 });

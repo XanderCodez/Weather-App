@@ -50,25 +50,29 @@ input:hover {
    background-color: #ffd987;
 }
 
-.last-search h2 {
+#RecentSearches h2 {
    margin: 3px;
 }
 
-.last-search a {
+#RecentSearches a {
+   font-size: 1.7rem;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
    color: #ffffffb5;
    text-decoration: none;
    transition: all ease 0.2s;
    margin: 0;
 }
 
-.last-search a:hover {
+#RecentSearches a:hover {
    color: #ffffff;
    cursor: pointer;
 }
 
 .invalid-search img,
 .invalid-search,
-.last-search p {
+#RecentSearches p {
    font-size: 1.25rem;
    font-weight: 700;
    color: #00000099;
@@ -94,7 +98,7 @@ input:hover {
 
 .weather-display {
    font-weight: 700;
-   font-size: 2rem;
+   font-size: 3rem;
 }
 
 .weather-display h1 {
