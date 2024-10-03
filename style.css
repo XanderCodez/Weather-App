@@ -50,10 +50,6 @@ input:hover {
    background-color: #ffd987;
 }
 
-#RecentSearches h2 {
-   margin: 3px;
-}
-
 #RecentSearches a {
    font-size: 1.7rem;
    display: flex;
@@ -87,6 +83,21 @@ input:hover {
 #locationDot:hover {
    color: #0077ffb5;
    cursor: pointer;
+}
+
+#ClearBtn {
+   border: none;
+   background: rgba(255, 255, 255, 0.377);
+   cursor: pointer;
+   margin: 20px;
+   border-radius: 10px;
+   transition: all ease 0.2s;
+   font-size: 1.4rem;
+   color: #00000099;
+}
+
+#ClearBtn:hover {
+   background: rgba(255, 255, 255, 0.596);
 }
 
 .large-text {

@@ -5,6 +5,7 @@ $(document).ready(() => {
       LOCATION_FIELD: $("#CityInput"),
       SUBMIT_BTN: $("#CityBtn"),
       LOCATION_BTN: $("#locationDot"),
+      CLAER_BTN: $("#ClearBtn"),
       FAHRENHEIT_BTN: $("#FahrenheitBtn"),
       CELSIUS_BTN: $("#CelsiusBtn"),
       CONVERT: $("#ConvertBtn")
@@ -23,8 +24,10 @@ $(document).ready(() => {
       HUMIDITY_LEVEL: $("#HumidityDisplay")
    };
 
-   const displayError = (error, dispaly) => {
-      DISPLAY.ERROR_MESSAGE.css("display", dispaly);
+   const displayError = (error, dispaly1, display2) => {
+      DISPLAY.ERROR_MESSAGE.css("display", dispaly1);
+
+      DISPLAY.WEATHER_CONTAINER.css("display", display2);
 
       DISPLAY.WELCOME_MESSAGE.css("display", "none");
 
@@ -38,30 +41,30 @@ $(document).ready(() => {
 
       if (recentSearches.length === 0) DISPLAY.RECENT_SEARCH.hide();
 
-      recentSearches.forEach((city) => {
-         city = city.charAt(0).toUpperCase() + city.slice(1);
-         DISPLAY.SEARCH_LIST.append(`<a>${city}</a>`);
+      recentSearches.forEach(city => {
+         DISPLAY.SEARCH_LIST.append(`<a>${city.charAt(0).toUpperCase() + city.slice(1)}</a>`);
       });
 
       DISPLAY.SEARCH_LIST.on("click", "a", function () {
          const city = $(this).text();
-         getWeatherData(city).then((data) => {
+         getWeatherData(city).then(data => {
             displayWeatherInfo(data);
+            displayError("", "none", "block");
          });
       });
    };
 
-   const saveSearch = (city) => {
+   const saveSearch = city => {
       let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
 
-      if (!recentSearches.includes(city)) recentSearches.unshift(city);
+      if (!recentSearches.map(c => c.toLowerCase()).includes(city.toLowerCase())) recentSearches.unshift(city);
 
-      if (recentSearches.length > 5) recentSearches.pop(); // Corrected condition
+      if (recentSearches.length > 5) recentSearches.pop();
 
       localStorage.setItem("recentSearch", JSON.stringify(recentSearches));
    };
 
-   const getWeatherData = async (city) => {
+   const getWeatherData = async city => {
       const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
 
       const RESPONSE = await fetch(API_URL);
@@ -85,7 +88,7 @@ $(document).ready(() => {
       return await RESPONSE.json();
    };
 
-   const displayWeatherIcon = (weatherId) => {
+   const displayWeatherIcon = weatherId => {
       switch (true) {
          case weatherId >= 200 && weatherId < 300:
             DISPLAY.WEATHER_ICON.attr("src", "Images/lightning.png");
@@ -117,7 +120,7 @@ $(document).ready(() => {
       }
    };
 
-   const displayWeatherInfo = (data) => {
+   const displayWeatherInfo = data => {
       const {
          name: cityName,
          main: { temp, humidity },
@@ -148,13 +151,14 @@ $(document).ready(() => {
    };
 
    INPUT.LOCATION_BTN.click(() => {
-      const successCallback = async (postion) => {
+      const successCallback = async postion => {
          const { latitude, longitude } = postion.coords;
 
          try {
             const WEATHER_BY_LOCATION = await getWeatherByLocation(latitude, longitude);
 
             displayWeatherInfo(WEATHER_BY_LOCATION);
+
             displayError("", "none");
          } catch (error) {
             console.error(error);
@@ -163,7 +167,7 @@ $(document).ready(() => {
          }
       };
 
-      const errorCallback = (error) => {
+      const errorCallback = error => {
          console.error(error);
       };
 
@@ -172,20 +176,28 @@ $(document).ready(() => {
 
    INPUT.SUBMIT_BTN.click(async () => {
       const CITY = INPUT.LOCATION_FIELD.val();
-
       if (CITY) {
          try {
             const WEATHER_DATA = await getWeatherData(CITY);
+
             displayWeatherInfo(WEATHER_DATA);
-            displayError("", "none");
+
+            displayError("", "none", "block");
          } catch (error) {
+            displayError(error, "block", "none");
+
             console.error(error);
-            displayError(error, "block");
          }
       } else {
-         displayError("", "block");
-         DISPLAY.WEATHER_CONTAINER.css("display", "none");
+         displayError("", "block", "none");
       }
    });
-   displayRecentSearch();
+
+   INPUT.CLAER_BTN.click(() => {
+      localStorage.clear("recentSearch");
+      displayRecentSearch();
+   });
+   $(document).ready(() => {
+      displayRecentSearch();
+   });
 });
