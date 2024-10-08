@@ -1,41 +1,14 @@
 body {
-   background-image: linear-gradient(180deg, #ff000094 0%, #ffff0083 100%);
+   background-image: linear-gradient(180deg, #ff510094 0%, #ffff0083 100%);
    background-attachment: fixed;
    font-family: "Montserrat";
    text-align: center;
-   margin: 0;
    overflow-x: hidden;
 }
 
 img {
    max-width: 200px;
    filter: drop-shadow(0px 5px 5px #000000a5);
-}
-
-.search-bar {
-   margin-top: 20px;
-   display: flex;
-   align-items: center;
-   justify-items: center;
-   justify-content: center;
-}
-
-.search-bar :placeholder-shown {
-   font-weight: 550;
-   text-transform: uppercase;
-}
-
-.search-bar button {
-   font-size: 25px;
-   border: none;
-   border-radius: 10px;
-   color: #000000b5;
-   transition: all ease 0.2s;
-}
-
-.search-bar button:hover {
-   color: #00b7ff;
-   cursor: pointer;
 }
 
 input {
@@ -50,6 +23,47 @@ input:hover {
    background-color: #ffd987;
 }
 
+input[type="radio"] {
+   appearance: none;
+   width: 20px;
+   height: 20px;
+   border: 2px solid #000000;
+   border-radius: 50%;
+   outline: none;
+   cursor: pointer;
+   margin-right: 5px;
+}
+
+input[type="radio"]:checked {
+   background-color: #0000007a;
+}
+
+#SearchBar {
+   margin-top: 20px;
+   display: flex;
+   align-items: center;
+   justify-items: center;
+   justify-content: center;
+}
+
+#SearchBar :placeholder-shown {
+   font-weight: 550;
+   text-transform: uppercase;
+}
+
+#SearchBar button {
+   font-size: 25px;
+   border: none;
+   border-radius: 10px;
+   color: #000000b5;
+   transition: all ease 0.2s;
+}
+
+#SearchBar button:hover {
+   color: #00b7ff;
+   cursor: pointer;
+}
+
 #RecentSearches a {
    font-size: 1.7rem;
    display: flex;
@@ -61,16 +75,22 @@ input:hover {
    margin: 0;
 }
 
+
 #RecentSearches a:hover {
    color: #ffffff;
    cursor: pointer;
 }
 
-.invalid-search img,
-.invalid-search,
+#WelcomeMsg h1 {
+   color: #0000007c;
+   font-weight: 400;
+}
+
+#InvalidSearch img,
+#InvalidSearch,
 #RecentSearches p {
    font-size: 1.25rem;
-   font-weight: 700;
+   font-weight: 600;
    color: #00000099;
 }
 
@@ -100,25 +120,28 @@ input:hover {
    background: rgba(255, 255, 255, 0.596);
 }
 
-.large-text {
-   color: #ffffff;
-   text-shadow: 0px 2px 4px #00000094;
-   font-size: 4rem;
-   margin-bottom: 0;
-}
-
-.weather-display {
-   font-weight: 700;
+#WeatherDisplay {
+   font-weight: 500;
    font-size: 3rem;
+
 }
 
-.weather-display h1 {
+#WeatherDisplay h1 {
    color: #ffffff;
    text-transform: uppercase;
    letter-spacing: 3px;
+   margin-bottom: 0px;
+   margin-top: 10px;
 }
 
-.weather-display button {
+#WeatherDisplay p {
+   text-transform: uppercase;
+   letter-spacing: 3px;
+   margin-bottom: 0px;
+   margin-top: 10px;
+}
+
+#WeatherDisplay button {
    text-transform: uppercase;
    font-size: 18px;
    border: 2px solid rgb(0, 0, 0);
@@ -129,42 +152,30 @@ input:hover {
    transition: all ease 0.2s;
 }
 
-.weather-display button:hover {
+#WeatherDisplay button:hover {
    cursor: pointer;
    background-color: #eea300;
 }
 
-.weather-details {
-   width: 100%;
-   margin-top: 30px;
-   font-size: 20px;
-   padding: 10px;
+#WeatherDetails {
+   margin-top: 50px;
+   font-size: 30px;
 }
 
-.weather-details p1 {
+#WeatherDetails h1 {
+   color: #000000;
+   font-size: 30px;
+   margin-bottom: 0px;
+   letter-spacing: 1px;
+   font-weight: 400;
+}
+
+#WeatherDetails h2 {
+   margin-top: 0px;
    font-weight: 500;
 }
 
-.weather-details p2 {
-   font-size: 2.5rem;
-   font-weight: 600;
-}
-
-input[type="radio"] {
-   appearance: none;
-   width: 20px;
-   height: 20px;
-   border: 2px solid #000000;
-   border-radius: 50%;
-   outline: none;
-   cursor: pointer;
-   margin-right: 5px;
-}
-input[type="radio"]:checked {
-   background-color: #0000007a;
-}
-
-.convert {
+#Convert {
    font-size: 20px;
    margin-top: 20px;
    display: flex;

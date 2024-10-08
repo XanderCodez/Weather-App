@@ -1,62 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>What the Fog</title>
-      <link rel="stylesheet" href="style.css" />
-      <link rel="icon" type="image/png" href="Images/icon.png" />
-      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-      <script src="https://kit.fontawesome.com/b5fba243a8.js" crossorigin="anonymous"></script>
-      <script src="Weather.js"></script>
-   </head>
-   <body>
-      <div class="search-bar">
-         <a type="button" id="locationDot" class="fa-solid fa-location-dot"></a>
-         <input type="text" placeholder="Enter your city" id="CityInput" />
-         <button type="button" id="CityBtn">🔍</button>
-      </div>
 
-      <div id="RecentSearches">
-         <p>Recent Search</p>
-         <a id="SearchList"></a>
-         <button id="ClearBtn">Clear</button>
-      </div>
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>What The Fog</title>
+   <link rel="stylesheet" href="style.css" />
+   <link rel="icon" type="image/png" href="Images/icon.png" />
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+   <script src="https://kit.fontawesome.com/b5fba243a8.js" crossorigin="anonymous"></script>
+   <script src="Weather.js"></script>
+</head>
 
-      <div id="WelcomeMsg" style="display: block">
-         <h1 class="large-text">Search for a city</h1>
-      </div>
+<body>
 
-      <div class="invalid-search" id="InvalidSearch" style="display: none">
-         <img src="Images/invalid-location.png" /> <br />
-         <p>Invalid search, try again!</p>
-      </div>
+   <div id="SearchBar">
+      <button type="button" id="locationDot">🌐</button>
+      <input type="text" placeholder="Enter your city" id="CityInput" />
+      <button type="button" id="CityBtn">🔍</button>
+   </div>
 
-      <div id="MainContainer" style="display: none">
-         <div class="weather-display">
-            <h1 id="CityDisplay" class="large-text">Cairo</h1>
-            <img id="IconDisplay" src="" class="weather-icon" />
-            <p id="SkyDisplay">Clear Sky</p>
-            <p id="TemperatureDisplay">25°</p>
+   <div id="RecentSearches">
+      <p>Recent Search</p>
+      <a id="SearchList"></a>
+      <button id="ClearBtn">Clear</button>
+   </div>
 
-            <div class="convert">
-               <input type="radio" id="FahrenheitBtn" name="unit" />
-               <label for="FahrenheitBtn">Fahrenheit</label>
+   <div id="WelcomeMsg" style="display: block">
+      <h1>Search for a city or use Location</h1>
+   </div>
 
-               <input type="radio" id="CelsiusBtn" name="unit" />
-               <label for="CelsiusBtn">Celsius</label>
-            </div>
+   <div id="InvalidSearch" style="display: none">
+      <img src="Images/invalid-location.png" /> <br />
+      <p>Invalid search, try again!</p>
+   </div>
 
-            <button id="ConvertBtn">convert</button>
+   <div id="MainContainer" style="display: none">
 
-            <div class="weather-details">
-               <div>
-                  <i class="fa-solid fa-water"></i>
-                  <p1>Humidity</p1> <br />
-                  <p2 id="HumidityDisplay">55%</p2>
-               </div>
-            </div>
+      <div id="WeatherDisplay">
+
+         <h1 id="CityDisplay"></h1>
+         <img id="IconDisplay" src="#" />
+         <p id="SkyDisplay"></p>
+         <p id="TemperatureDisplay"></p>
+
+         <div id="Convert">
+            <input type="radio" id="FahrenheitBtn" name="unit" />
+            <label for="FahrenheitBtn">Fahrenheit</label>
+            <input type="radio" id="CelsiusBtn" name="unit" />
+            <label for="CelsiusBtn">Celsius</label>
          </div>
+
+         <button id="ConvertBtn">convert</button>
+
+         <div id="WeatherDetails">
+            <h1>Humidity</h1>
+            <h2 id="HumidityDisplay">30</h2>
+         </div>
+
       </div>
-   </body>
+
+   </div>
+
+</body>
+
 </html>
