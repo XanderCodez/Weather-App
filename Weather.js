@@ -8,8 +8,7 @@ $(document).ready(() => {
       LOCATION_BTN: $("#locationDot"),
       CLAER_BTN: $("#ClearBtn"),
       FAHRENHEIT_BTN: $("#FahrenheitBtn"),
-      CELSIUS_BTN: $("#CelsiusBtn"),
-      CONVERT: $("#ConvertBtn")
+      CELSIUS_BTN: $("#CelsiusBtn")
    };
 
    const DISPLAY = {
@@ -145,20 +144,21 @@ $(document).ready(() => {
 
       displayWeatherIcon(id);
 
-      INPUT.CONVERT.click(() => {
 
-         let convertedTemp = CELSIUS_TEMP;
+      let convertedTemp = CELSIUS_TEMP;
 
-         if (INPUT.FAHRENHEIT_BTN.is(":checked")) {
+      INPUT.FAHRENHEIT_BTN.click(() => {
 
-            convertedTemp = (CELSIUS_TEMP * 9) / 5 + 32;
+         convertedTemp = (CELSIUS_TEMP * 9) / 5 + 32;
 
-            DISPLAY.TEMPERATURE_VALUE.text(`${convertedTemp}°F`);
+         DISPLAY.TEMPERATURE_VALUE.text(`${convertedTemp}°F`);
+      })
 
-         } else {
-            DISPLAY.TEMPERATURE_VALUE.text(`${CELSIUS_TEMP}°C`);
-         }
-      });
+      INPUT.CELSIUS_BTN.click(() => {
+         DISPLAY.TEMPERATURE_VALUE.text(`${CELSIUS_TEMP}°C`);
+      })
+
+
    };
 
    INPUT.LOCATION_BTN.click(() => {

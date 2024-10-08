@@ -27,7 +27,9 @@
    </div>
 
    <div id="WelcomeMsg" style="display: block">
-      <h1>Search for a city or use Location</h1>
+      <h1>Search for a <b>City</b> or use your <b>Location</b> for <b>Weather Details</b></h1>
+      <h1></h1>
+      <img src="Images/placeholder.jpg" alt="">
    </div>
 
    <div id="InvalidSearch" style="display: none">
@@ -45,17 +47,13 @@
          <p id="TemperatureDisplay"></p>
 
          <div id="Convert">
-            <input type="radio" id="FahrenheitBtn" name="unit" />
-            <label for="FahrenheitBtn">Fahrenheit</label>
-            <input type="radio" id="CelsiusBtn" name="unit" />
-            <label for="CelsiusBtn">Celsius</label>
+            <button id="FahrenheitBtn">Fahrenheit</button>
+            <button id="CelsiusBtn">Celsius</button>
          </div>
-
-         <button id="ConvertBtn">convert</button>
 
          <div id="WeatherDetails">
             <h1>Humidity</h1>
-            <h2 id="HumidityDisplay">30</h2>
+            <h2 id="HumidityDisplay"></h2>
          </div>
 
       </div>
