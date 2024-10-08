@@ -69,7 +69,7 @@ input[type="radio"]:checked {
    display: flex;
    justify-content: center;
    flex-direction: row;
-   gap: 2rem;
+   gap: 1rem;
    color: #ffffffb5;
    text-decoration: none;
    transition: all ease 0.2s;
