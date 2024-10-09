@@ -7,8 +7,6 @@ $(document).ready(() => {
       SUBMIT_BTN: $("#CityBtn"),
       LOCATION_BTN: $("#locationDot"),
       CLAER_BTN: $("#ClearBtn"),
-      FAHRENHEIT_BTN: $("#FahrenheitBtn"),
-      CELSIUS_BTN: $("#CelsiusBtn")
    };
 
    const DISPLAY = {
@@ -132,33 +130,19 @@ $(document).ready(() => {
 
    const displayWeatherInfo = data => {
       const { name: cityName, main: { temp, humidity }, weather: [{ description, id }] } = data;
+
       const CELSIUS_TEMP = Math.floor(temp - 273.15);
+      const FAHRENHEIT_TEMP = Math.floor((CELSIUS_TEMP * 9) / 5 + 32);
 
       DISPLAY.WELCOME_MESSAGE.css("display", "none");
       DISPLAY.WEATHER_CONTAINER.hide();
       DISPLAY.WEATHER_CONTAINER.fadeIn(500);
       DISPLAY.SKY_CONDITION.text(description);
       DISPLAY.CITY_NAME.text(cityName);
-      DISPLAY.TEMPERATURE_VALUE.text(`${CELSIUS_TEMP}°C`);
+      DISPLAY.TEMPERATURE_VALUE.text(`${FAHRENHEIT_TEMP}°F | ${CELSIUS_TEMP}°C`);
       DISPLAY.HUMIDITY_LEVEL.text(`${humidity}%`);
 
       displayWeatherIcon(id);
-
-
-      let convertedTemp = CELSIUS_TEMP;
-
-      INPUT.FAHRENHEIT_BTN.click(() => {
-
-         convertedTemp = (CELSIUS_TEMP * 9) / 5 + 32;
-
-         DISPLAY.TEMPERATURE_VALUE.text(`${convertedTemp}°F`);
-      })
-
-      INPUT.CELSIUS_BTN.click(() => {
-         DISPLAY.TEMPERATURE_VALUE.text(`${CELSIUS_TEMP}°C`);
-      })
-
-
    };
 
    INPUT.LOCATION_BTN.click(() => {

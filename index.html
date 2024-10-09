@@ -7,29 +7,33 @@
    <title>What The Fog</title>
    <link rel="stylesheet" href="style.css" />
    <link rel="icon" type="image/png" href="Images/icon.png" />
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-   <script src="https://kit.fontawesome.com/b5fba243a8.js" crossorigin="anonymous"></script>
    <script src="Weather.js"></script>
 </head>
 
 <body>
 
    <div id="SearchBar">
-      <button type="button" id="locationDot">🌐</button>
-      <input type="text" placeholder="Enter your city" id="CityInput" />
-      <button type="button" id="CityBtn">🔍</button>
+      <span class="material-symbols-outlined" type="button" id="locationDot">location_on</span>
+      <input type="text" placeholder="Search" id="CityInput" />
+      <span class="material-symbols-outlined" type="button" id="CityBtn">search</span>
    </div>
 
    <div id="RecentSearches">
       <p>Recent Search</p>
-      <a id="SearchList"></a>
-      <button id="ClearBtn">Clear</button>
+      <div>
+         <a id="SearchList"></a>
+         <span type="button" id="ClearBtn" class="material-symbols-outlined">cancel</span>
+      </div>
    </div>
 
    <div id="WelcomeMsg" style="display: block">
       <h1>Search for a <b>City</b> or use your <b>Location</b> for <b>Weather Details</b></h1>
       <h1></h1>
       <img src="Images/placeholder.jpg" alt="">
+
    </div>
 
    <div id="InvalidSearch" style="display: none">
@@ -45,11 +49,6 @@
          <img id="IconDisplay" src="#" />
          <p id="SkyDisplay"></p>
          <p id="TemperatureDisplay"></p>
-
-         <div id="Convert">
-            <button id="FahrenheitBtn">Fahrenheit</button>
-            <button id="CelsiusBtn">Celsius</button>
-         </div>
 
          <div id="WeatherDetails">
             <h1>Humidity</h1>
