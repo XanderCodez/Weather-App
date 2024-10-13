@@ -104,7 +104,7 @@ b {
 }
 
 #WelcomeMsg img {
-   max-width: 1300px;
+   max-width: 1200px;
    filter: hue-rotate(22deg) opacity(0.5) brightness(1.5) saturate(0.7);
    mix-blend-mode: screen;
 }
