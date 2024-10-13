@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>What The Fog</title>
+   <title>Weather</title>
    <link rel="stylesheet" href="style.css" />
    <link rel="icon" type="image/png" href="Images/icon.png" />
    <link rel="stylesheet"
@@ -17,43 +15,42 @@
 
    <div id="SearchBar">
       <span class="material-symbols-outlined" type="button" id="locationDot">location_on</span>
-      <input type="text" placeholder="Search for a city" id="CityInput" />
+      <input type="text" placeholder="Search" id="CityInput" />
       <span class="material-symbols-outlined" type="button" id="CityBtn">search</span>
    </div>
 
-   <div id="RecentSearches">
+   <div id="RecentSearches" class="m-auto m-20">
       <p>Recent Search</p>
-      <div>
+      <span type="button" id="ClearBtn" class="material-symbols-outlined">cancel</span>
+      <div id="ListDisplay">
          <a id="SearchList"></a>
-         <span type="button" id="ClearBtn" class="material-symbols-outlined">cancel</span>
       </div>
    </div>
 
    <div id="WelcomeMsg" style="display: block">
       <h1>Search for a <b>City</b> or use your <b>Location</b> for <b>Weather Details</b></h1>
-      <h1></h1>
-      <img src="Images/placeholder.jpg" alt="">
-
+      <img src="Images/placeholder-blue-invert.png" alt="">
    </div>
 
    <div id="InvalidSearch" style="display: none">
-      <img src="Images/invalid-location.png" /> <br />
+      <img src="Images/invalid-location.png" alt="Invalid location" />
       <p>Invalid search, try again!</p>
    </div>
 
    <div id="MainContainer" style="display: none">
 
-      <div id="WeatherDisplay">
+      <div id="WeatherDisplay" class="flex-center">
+         <b>
+            <h1 id="CityDisplay"></h1>
+            <img id="IconDisplay" src="#" alt="Weather Icon" />
+            <p id="SkyDisplay"></p>
+            <p id="TemperatureDisplay">11</p>
 
-         <h1 id="CityDisplay"></h1>
-         <img id="IconDisplay" src="#" />
-         <p id="SkyDisplay"></p>
-         <p id="TemperatureDisplay"></p>
-
-         <div id="WeatherDetails">
-            <h1>Humidity</h1>
-            <h2 id="HumidityDisplay"></h2>
-         </div>
+            <div id="WeatherDetails">
+               <h1>humidity</h1>
+               <h2 id="HumidityDisplay"></h2>
+            </div>
+         </b>
 
       </div>
 

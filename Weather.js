@@ -40,7 +40,7 @@ $(document).ready(() => {
       if (recentSearches.length === 0) DISPLAY.RECENT_SEARCH.hide();
 
       recentSearches.forEach(city => {
-         DISPLAY.SEARCH_LIST.append(`<a>${city.charAt(0).toUpperCase() + city.slice(1)}</a>`);
+         DISPLAY.SEARCH_LIST.append(`<a>${city}</a>`);
       });
 
       DISPLAY.SEARCH_LIST.on("click", "a", function () {

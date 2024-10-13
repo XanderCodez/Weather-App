@@ -3,26 +3,33 @@ body {
    font-family: "Montserrat", sans-serif;
    overflow-x: hidden;
    text-align: center;
-   margin: 0;
-   padding: 0;
    color: #E0E0E0;
+   position: relative;
+}
+
+img {
+   max-width: 200px;
+   height: auto;
+}
+
+b {
+   font-weight: 500;
+   color: #8ab4f8;
 }
 
 #SearchBar {
-   font-size: 2rem;
    margin: 20px auto;
    max-width: fit-content;
    display: flex;
-   justify-content: center;
    align-items: center;
-   padding: 8px;
+   padding: 5px;
    border-radius: 20px;
    background-color: #00000059;
    transition: all 0.2s ease;
 }
 
 #SearchBar input {
-   font-size: 20px;
+   font-size: 1.6rem;
    outline: none;
    border: none;
    background: transparent;
@@ -32,79 +39,92 @@ body {
 
 #SearchBar span {
    font-size: 2rem;
-   color: #BDBDBD;
+   color: #8ab4f8c0;
    transition: color 0.2s ease;
    margin: 0 10px;
    pointer-events: auto;
 }
 
 #SearchBar span:hover {
-   color: #FFFFFF;
+   color: #8ab4f8;
    cursor: pointer;
 }
 
+#RecentSearches {
+   max-width: fit-content;
+   margin: 20px auto;
+   padding: 24px;
+   border: 1px solid;
+   border-radius: 20px;
+   border-color: #ffffffa9;
+   background-color: #00000059;
+   position: relative;
+}
+
 #RecentSearches a {
-   font-size: 1.7rem;
+   text-transform: uppercase;
    display: flex;
-   justify-content: center;
-   flex-direction: row;
    gap: 1rem;
-   color: #BDBDBD;
+   font-size: 1.7rem;
+   padding: 2px;
+   color: #8ab4f8c0;
    text-decoration: none;
    transition: color 0.2s ease;
 }
 
 #RecentSearches a:hover {
-   color: #FFFFFF;
+   color: #9bc2ff;
    cursor: pointer;
 }
 
-#RecentSearches span {
+#ClearBtn {
    font-size: 2rem;
+   position: absolute;
+   top: 6px;
+   right: 6px;
+   cursor: pointer;
+   color: #ff0000a8;
+   transition: color 0.2s ease;
+}
+
+#ClearBtn:hover {
+   color: #ff0000;
+}
+
+#ListDisplay {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
 }
 
 #WelcomeMsg h1 {
-   font-weight: 400;
-}
-
-img {
-   max-width: 200px;
-   height: auto;
+   font-weight: 300;
+   font-size: 3rem;
 }
 
 #WelcomeMsg img {
-   max-width: 1200px;
-   border-radius: 20px;
+   max-width: 1300px;
+   filter: hue-rotate(22deg) opacity(0.5) brightness(1.5) saturate(0.7);
+   mix-blend-mode: screen;
 }
 
 #WelcomeMsg h1 {
    color: #e0e0e0b7;
 }
 
-#WelcomeMsg b {
-   font-weight: 500;
-   color: #e0e0e0;
+#InvalidSearch img {
+   background-color: #ffffff2c;
+   border-radius: 20px;
+   padding: 20px;
 }
 
-#InvalidSearch img,
 #InvalidSearch,
 #RecentSearches p {
-   font-size: 1.25rem;
+   font-size: 1.5rem;
    font-weight: 600;
-   color: #e0e0e0c9;
-}
-
-#ClearBtn {
-   border: none;
-   cursor: pointer;
-   transition: color 0.2s ease;
-   font-size: 1.4rem;
-   color: #e0e0e093;
-   padding: 7px;
-}
-
-#ClearBtn:hover {
-   color: #E0E0E0;
+   color: #e0e0e0;
+   margin: 10px;
 }
 
 #WeatherDisplay {
