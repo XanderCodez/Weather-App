@@ -48,13 +48,13 @@ $(document).ready(() => {
          const city = $(this).text();
 
          getWeatherData(city).then(data => {
-
             displayWeatherInfo(data);
             displayError("", "none", "block");
-
          });
       });
    };
+
+   displayRecentSearch();
 
    const saveSearch = city => {
 
@@ -129,9 +129,11 @@ $(document).ready(() => {
    };
 
    const displayWeatherInfo = data => {
+
       const { name: cityName, main: { temp, humidity }, weather: [{ description, id }] } = data;
 
       const CELSIUS_TEMP = Math.floor(temp - 273.15);
+
       const FAHRENHEIT_TEMP = Math.floor((CELSIUS_TEMP * 9) / 5 + 32);
 
       DISPLAY.WELCOME_MESSAGE.css("display", "none");
@@ -165,7 +167,7 @@ $(document).ready(() => {
          }
       };
 
-      const errorCallback = error => {
+      const errorCallback = (error) => {
          console.error(error);
       };
 
@@ -201,7 +203,5 @@ $(document).ready(() => {
       localStorage.clear("recentSearch");
       displayRecentSearch();
    });
-
-   displayRecentSearch();
 
 });

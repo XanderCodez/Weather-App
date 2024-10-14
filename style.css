@@ -57,7 +57,7 @@ b {
    justify-content: center;
    max-width: fit-content;
    margin: 20px auto;
-   padding: 10px;
+   padding: 12px;
    border-radius: 20px;
    background-color: #00000059;
 }
@@ -67,7 +67,6 @@ b {
    display: flex;
    gap: 1rem;
    font-size: 1.7rem;
-   padding: 2px;
    color: #8ab4f8c0;
    text-decoration: none;
    transition: color 0.2s ease;
