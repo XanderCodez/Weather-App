@@ -61,7 +61,7 @@ $(document).ready(() => {
       let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
 
       if (!recentSearches.map(c => c.toLowerCase()).includes(city.toLowerCase())) recentSearches.unshift(city);
-      if (recentSearches.length > 5) recentSearches.pop();
+      if (recentSearches.length > 8) recentSearches.pop();
 
       localStorage.setItem("recentSearch", JSON.stringify(recentSearches));
    };
