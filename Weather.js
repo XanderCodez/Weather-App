@@ -22,7 +22,7 @@ $(document).ready(() => {
       HUMIDITY_LEVEL: $("#HumidityDisplay")
    };
 
-   const displayError = (error, display1, display2) => {
+   displayError = (error, display1, display2) => {
 
       DISPLAY.ERROR_MESSAGE.css("display", display1);
       DISPLAY.WEATHER_CONTAINER.css("display", display2);
@@ -31,32 +31,7 @@ $(document).ready(() => {
       if (error) console.error(error);
    };
 
-   const displayRecentSearch = () => {
-
-      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
-
-      DISPLAY.SEARCH_LIST.empty();
-
-      if (recentSearches.length === 0) DISPLAY.RECENT_SEARCH.hide();
-
-      recentSearches.forEach(city => {
-         DISPLAY.SEARCH_LIST.append(`<a>${city}</a>`);
-      });
-
-      DISPLAY.SEARCH_LIST.on("click", "a", function () {
-
-         const city = $(this).text();
-
-         getWeatherData(city).then(data => {
-            displayWeatherInfo(data);
-            displayError("", "none", "block");
-         });
-      });
-   };
-
-   displayRecentSearch();
-
-   const saveSearch = city => {
+   saveSearch = (city) => {
 
       let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
 
@@ -66,7 +41,21 @@ $(document).ready(() => {
       localStorage.setItem("recentSearch", JSON.stringify(recentSearches));
    };
 
-   const getWeatherData = async city => {
+
+   displayRecentSearch = () => {
+
+      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
+
+      DISPLAY.SEARCH_LIST.empty();
+
+      if (recentSearches.length === 0) DISPLAY.RECENT_SEARCH.hide();
+
+      recentSearches.forEach((city) => { DISPLAY.SEARCH_LIST.append(`<a>${city}</a>`) });
+   };
+
+   displayRecentSearch();
+
+   getWeatherData = async (city) => {
 
       const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
 
@@ -77,7 +66,7 @@ $(document).ready(() => {
       return await RESPONSE.json();
    };
 
-   const getWeatherByLocation = async (lat, lon) => {
+   getWeatherByLocation = async (lat, lon) => {
 
       const API_URL_LOCATION = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
@@ -88,7 +77,8 @@ $(document).ready(() => {
       return await RESPONSE.json();
    };
 
-   const displayWeatherIcon = weatherId => {
+   displayWeatherIcon = (weatherId) => {
+
       switch (true) {
 
          case weatherId >= 200 && weatherId < 300:
@@ -128,7 +118,7 @@ $(document).ready(() => {
       }
    };
 
-   const displayWeatherInfo = data => {
+   displayWeatherInfo = (data) => {
 
       const { name: cityName, main: { temp, humidity }, weather: [{ description, id }] } = data;
 
@@ -147,9 +137,20 @@ $(document).ready(() => {
       displayWeatherIcon(id);
    };
 
+   DISPLAY.SEARCH_LIST.on("click", "a", function () {
+
+      const city = $(this).text();
+
+      getWeatherData(city).then(data => {
+         displayWeatherInfo(data);
+         displayError("", "none", "block");
+      });
+   });
+
+
    INPUT.LOCATION_BTN.click(() => {
 
-      const successCallback = async postion => {
+      successCallback = async (postion) => {
 
          const { latitude, longitude } = postion.coords;
 
@@ -167,7 +168,7 @@ $(document).ready(() => {
          }
       };
 
-      const errorCallback = (error) => {
+      errorCallback = (error) => {
          console.error(error);
       };
 
@@ -199,9 +200,6 @@ $(document).ready(() => {
       }
    });
 
-   INPUT.CLAER_BTN.click(() => {
-      localStorage.clear("recentSearch");
-      displayRecentSearch();
-   });
+   INPUT.CLAER_BTN.click(() => { localStorage.clear("recentSearch"); displayRecentSearch() });
 
 });
