@@ -1,5 +1,5 @@
 body {
-   background-color: #424242;
+   background-color: #202124;
    font-family: "Montserrat", sans-serif;
    overflow-x: hidden;
    text-align: center;
@@ -13,7 +13,7 @@ img {
 }
 
 b {
-   font-weight: 500;
+   font-weight: 450;
    color: #8ab4f8;
 }
 
@@ -95,16 +95,13 @@ b {
 #WelcomeMsg h1 {
    font-weight: 300;
    font-size: 3rem;
+   color: #9aa0a6;
 }
 
 #WelcomeMsg img {
    max-width: 1200px;
    filter: hue-rotate(22deg) opacity(0.5) brightness(1.5) saturate(0.7);
    mix-blend-mode: screen;
-}
-
-#WelcomeMsg h1 {
-   color: #e0e0e0b7;
 }
 
 #InvalidSearch img {
