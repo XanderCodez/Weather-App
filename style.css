@@ -1,3 +1,8 @@
+* {
+   margin: 0px;
+   padding: 0xp;
+}
+
 body {
    background-color: #202124;
    font-family: "Montserrat", sans-serif;
@@ -141,8 +146,11 @@ b {
 }
 
 #WeatherDetails {
-   margin-top: 20px;
    font-size: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 2rem
 }
 
 #WeatherDetails h1 {
@@ -156,5 +164,12 @@ b {
 #WeatherDetails h2 {
    margin-top: 0px;
    font-weight: 600;
-   color: #BDBDBD;
+   color: #6ac8ffa8;
+}
+
+.box {
+   background-color: #0000007e;
+   border-radius: 20px;
+   padding: 10px;
+   max-width: fit-content;
 }

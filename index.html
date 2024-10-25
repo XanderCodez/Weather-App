@@ -36,19 +36,32 @@
 
    <div id="MainContainer" style="display: none">
       <div id="WeatherDisplay">
-         <b>
-            <h1 id="CityDisplay"></h1>
-            <img id="IconDisplay" src="#" alt="Weather Icon" />
-            <p id="SkyDisplay"></p>
-            <p id="TemperatureDisplay">11</p>
-            <div id="WeatherDetails">
+
+         <h1 id="CityDisplay"></h1>
+         <img id="IconDisplay" src="#" alt="Weather Icon" />
+         <p id="SkyDisplay"></p>
+
+         <div id="WeatherDetails">
+
+            <div class="box">
                <h1>humidity</h1>
                <h2 id="HumidityDisplay"></h2>
             </div>
-         </b>
-      </div>
-   </div>
 
+            <div class="box">
+               <h1>temperature</h1>
+               <h2 id="TemperatureDisplay"></h2>
+            </div>
+
+            <div class="box">
+               <h1>wind speed</h1>
+               <h2 id="WindSpeedDisplay"></h2>
+            </div>
+
+         </div>
+      </div>
+
+   </div>
 </body>
 
 </html>
