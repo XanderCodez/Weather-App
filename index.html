@@ -21,47 +21,54 @@
 
    <div id="RecentSearches">
       <span type="button" id="ClearBtn" class="material-symbols-outlined">cancel</span>
-      <a id="SearchList">tanta</a>
+      <a id="SearchList"></a>
    </div>
 
    <div id="WelcomeMsg" style="display: block">
-      <h1>Search for a <b>City</b> or use your <b>Location</b> for <b>Weather Details</b></h1>
-      <img src="Images/placeholder-black-invert.png" alt="">
+      <h1 class="light-white-text">
+         Search for a <b class="blue-text">City</b> or use your <b class="blue-text">Location</b>
+      </h1>
+      <img src="Images/placeholder-black-invert.png">
    </div>
 
    <div id="InvalidSearch" style="display: none">
-      <img src="Images/invalid-location.png" alt="Invalid location" />
-      <p>Invalid search, try again!</p>
+      <img src="Images/invalid-location.png" />
+      <h1 id="Error" class="light-white-text"></h1>
    </div>
 
    <div id="MainContainer" style="display: none">
-      <div id="WeatherDisplay">
 
+      <div id="WeatherDisplay" class="box">
          <h1 id="CityDisplay"></h1>
-         <img id="IconDisplay" src="#" alt="Weather Icon" />
-         <p id="SkyDisplay"></p>
-
-         <div id="WeatherDetails">
-
-            <div class="box">
-               <h1>humidity</h1>
-               <h2 id="HumidityDisplay"></h2>
-            </div>
-
-            <div class="box">
-               <h1>temperature</h1>
-               <h2 id="TemperatureDisplay"></h2>
-            </div>
-
-            <div class="box">
-               <h1>wind speed</h1>
-               <h2 id="WindSpeedDisplay"></h2>
-            </div>
-
-         </div>
+         <img id="IconDisplay" />
+         <p id="SkyDisplay" class="light-white-text"></p>
       </div>
 
+      <div id="WeatherDetails">
+
+         <div class="box">
+            <h1 class="light-white-text">humidity</h1>
+            <p id="HumidityDisplay" class="blue-text"></p>
+         </div>
+
+         <div class="box">
+            <h1 class="light-white-text">temperature</h1>
+            <p id="TemperatureDisplay" class="blue-text"></p>
+         </div>
+
+         <div class="box">
+            <h1 class="light-white-text">wind speed</h1>
+            <p id="WindSpeedDisplay" class="blue-text"></p>
+         </div>
+
+      </div>
    </div>
+
+   <footer>
+      <p>This website is made for practical purposes.</p>
+      <p>&copy;xander-codez</p>
+   </footer>
+
 </body>
 
 </html>

@@ -9,17 +9,32 @@ body {
    overflow-x: hidden;
    text-align: center;
    color: #E0E0E0;
-   position: relative;
 }
 
 img {
    max-width: 200px;
-   height: auto;
 }
 
-b {
-   font-weight: 450;
-   color: #8ab4f8;
+a {
+   gap: 1rem;
+   text-transform: uppercase;
+   display: flex;
+   font-size: 1.7rem;
+   color: #8ab4f8c0;
+   text-decoration: none;
+   transition: color 0.2s ease;
+}
+
+a:hover {
+   color: #9bc2ff;
+   cursor: pointer;
+}
+
+footer {
+   font-size: 20px;
+   color: #9aa0a6;
+   text-align: center;
+
 }
 
 #SearchBar {
@@ -65,21 +80,7 @@ b {
    padding: 12px;
    border-radius: 20px;
    background-color: #00000059;
-}
-
-#RecentSearches a {
-   text-transform: uppercase;
-   display: flex;
    gap: 1rem;
-   font-size: 1.7rem;
-   color: #8ab4f8c0;
-   text-decoration: none;
-   transition: color 0.2s ease;
-}
-
-#RecentSearches a:hover {
-   color: #9bc2ff;
-   cursor: pointer;
 }
 
 #ClearBtn {
@@ -93,78 +94,50 @@ b {
    color: #ff0000;
 }
 
-.material-symbols-outlined {
-   margin-left: 12px;
-}
-
-#WelcomeMsg h1 {
-   font-weight: 300;
-   font-size: 3rem;
-   color: #9aa0a6;
-}
-
 #WelcomeMsg img {
-   max-width: 1200px;
+   max-width: 1300px;
    filter: hue-rotate(22deg) opacity(0.5) brightness(1.5) saturate(0.7);
    mix-blend-mode: screen;
+   border: 2px solid;
+   border-color: #202124;
+   border-radius: 50px;
+   margin: 20px;
 }
 
 #InvalidSearch img {
-   max-width: 250px;
+   max-width: 300px;
+   border: 2px solid;
+   border-color: #202124;
+   border-radius: 50px;
+   background-color: #00000042;
 }
 
-#InvalidSearch,
-#RecentSearches p {
-   font-size: 1.5rem;
-   font-weight: 600;
-   color: #e0e0e0;
-   margin: 10px;
+#MainContainer {
+   font-size: 3rem;
+   text-transform: uppercase;
 }
 
 #WeatherDisplay {
-   font-weight: 500;
-   font-size: 3rem;
-}
-
-#WeatherDisplay h1 {
-   text-transform: uppercase;
-   letter-spacing: 3px;
-   margin: 10px 0;
-}
-
-#WeatherDisplay p {
-   text-transform: uppercase;
-   letter-spacing: 3px;
-   margin: 10px 0;
-}
-
-#WeatherData {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 2rem;
+   margin: auto;
 }
 
 #WeatherDetails {
-   font-size: 30px;
    display: flex;
    align-items: center;
    justify-content: center;
-   gap: 2rem
+   margin: 1rem;
+   gap: 1rem;
 }
 
-#WeatherDetails h1 {
-   font-size: 30px;
-   margin: 0;
-   letter-spacing: 1px;
+.blue-text {
+   color: #8ab4f8c0;
    font-weight: 400;
 }
 
-#TemperatureDisplay,
-#WeatherDetails h2 {
-   margin-top: 0px;
-   font-weight: 600;
-   color: #6ac8ffa8;
+.light-white-text {
+   font-weight: 300;
+   font-size: 3rem;
+   color: #9aa0a6;
 }
 
 .box {
