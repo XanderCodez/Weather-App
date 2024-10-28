@@ -52,21 +52,6 @@ $(document).ready(() => {
       if (alert) setTimeout(() => window.alert(alert), 500);
    };
 
-   const saveSearch = (city) => {
-      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
-      if (!recentSearches.includes(city)) recentSearches.unshift(city);
-      if (recentSearches.length > 6) recentSearches.pop();
-      localStorage.setItem("recentSearch", JSON.stringify(recentSearches));
-   };
-
-   const displayRecentSearch = () => {
-      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
-      DOC.DISPLAY.RECENT.LIST.empty();
-      if (recentSearches.length === 0) DOC.DISPLAY.RECENT.CONTAINER.hide();
-      else DOC.DISPLAY.RECENT.CONTAINER.show();
-      recentSearches.forEach((city) => DOC.DISPLAY.RECENT.LIST.append(`<a>${city}</a>`));
-   };
-
    const fetchWeatherData = async (url) => {
       try {
          const RESPONSE = await fetch(url);
@@ -112,6 +97,21 @@ $(document).ready(() => {
          `${Math.floor(((temp - 273.15) * 9 / 5) + 32)}°F -
           ${Math.floor(temp - 273.15)}°C`
       );
+   };
+
+   const saveSearch = (city) => {
+      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
+      if (!recentSearches.includes(city)) recentSearches.unshift(city);
+      if (recentSearches.length > 6) recentSearches.pop();
+      localStorage.setItem("recentSearch", JSON.stringify(recentSearches));
+   };
+
+   const displayRecentSearch = () => {
+      let recentSearches = JSON.parse(localStorage.getItem("recentSearch")) || [];
+      DOC.DISPLAY.RECENT.LIST.empty();
+      if (recentSearches.length === 0) DOC.DISPLAY.RECENT.CONTAINER.hide();
+      else DOC.DISPLAY.RECENT.CONTAINER.show();
+      recentSearches.forEach((city) => DOC.DISPLAY.RECENT.LIST.append(`<a>${city}</a>`));
    };
 
    DOC.DISPLAY.RECENT.LIST.on("click", "a", function () {
