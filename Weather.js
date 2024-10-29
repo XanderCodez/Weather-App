@@ -65,23 +65,22 @@ $(document).ready(() => {
 
    const setWeatherIcon = (id) => {
 
-      icon = (i) => DOC.DISPLAY.WEATHER.ICON.attr("src", `Images/${i}.png`)
+      icon = (i) => DOC.DISPLAY.WEATHER.ICON.attr("src", `Images/${i}.png`);
 
-      if (id >= 200 && id < 300) icon("lightning")
-      if (id >= 300 && id < 400) icon("drizzle")
-      if (id >= 500 && id < 600) icon("rain")
-      if (id >= 600 && id < 700) icon("snow")
-      if (id >= 700 && id < 800) icon("windy")
-      if (id === 800) icon("clear")
-      if (id > 800) icon("cloudy")
+      if (id >= 200 && id < 300) icon("lightning");
+      if (id >= 300 && id < 400) icon("drizzle");
+      if (id >= 500 && id < 600) icon("rain");
+      if (id >= 600 && id < 700) icon("snow");
+      if (id >= 700 && id < 800) icon("windy");
+      if (id === 800) icon("clear");
+      if (id > 800) icon("cloudy");
    };
+
 
    const displayWeatherInfo = (data) => {
 
       const {
-         name, main: { temp, humidity },
-         weather: [{ description, id }],
-         wind: { speed }
+         name, main: { temp, humidity }, weather: [{ description, id }], wind: { speed }
       } = data;
 
       setWeatherIcon(id);
@@ -93,10 +92,7 @@ $(document).ready(() => {
       DOC.DISPLAY.WEATHER.CITY.text(name);
       DOC.DISPLAY.WEATHER.HUMIDITY.text(`${humidity}%`);
       DOC.DISPLAY.WEATHER.WIND.text(`${Math.floor(speed * 3.6)} km/h`);
-      DOC.DISPLAY.WEATHER.TEMPERATURE.text(
-         `${Math.floor(((temp - 273.15) * 9 / 5) + 32)}°F -
-          ${Math.floor(temp - 273.15)}°C`
-      );
+      DOC.DISPLAY.WEATHER.TEMPERATURE.text(`${Math.floor(((temp - 273.15) * 9 / 5) + 32)}°F-${Math.floor(temp - 273.15)}°C`);
    };
 
    const saveSearch = (city) => {
@@ -123,18 +119,15 @@ $(document).ready(() => {
    });
 
    DOC.INPUT.LOCATION.click(() => {
-
       getWeatherByLocation = async (lat, lon) => {
          return await fetchWeatherData(API.LOCATION(lat, lon));
       };
-
       successCallback = async (position) => {
          const { latitude, longitude } = position.coords;
          const DATA = await getWeatherByLocation(latitude, longitude);
          displayWeatherInfo(DATA);
          Error("", "none", "block");
       };
-
       errorCallback = () => {
          Error(
             "Location access denied", "block", "none",
@@ -156,13 +149,9 @@ $(document).ready(() => {
       }
    });
 
-   DOC.INPUT.VALUE.on("keypress", function (event) {
-      if (event.key === "Enter") submit()
-   });
+   DOC.INPUT.VALUE.on("keypress", function (event) { if (event.key === "Enter") submit() });
 
-   DOC.INPUT.CLEAR.click(() => {
-      localStorage.clear(); displayRecentSearch()
-   });
+   DOC.INPUT.CLEAR.click(() => { localStorage.clear(); displayRecentSearch() });
 
    displayRecentSearch();
 
