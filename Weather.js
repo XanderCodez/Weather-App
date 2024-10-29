@@ -76,7 +76,6 @@ $(document).ready(() => {
       if (id > 800) icon("cloudy");
    };
 
-
    const displayWeatherInfo = (data) => {
 
       const {
@@ -154,5 +153,4 @@ $(document).ready(() => {
    DOC.INPUT.CLEAR.click(() => { localStorage.clear(); displayRecentSearch() });
 
    displayRecentSearch();
-
 });
