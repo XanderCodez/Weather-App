@@ -2,7 +2,7 @@
 <html>
 
 <head>
-   <title>Weather</title>
+   <title>What The Fog</title>
    <link rel="stylesheet" href="style.css" />
    <link rel="icon" type="image/png" href="Images/icon.png" />
    <link rel="stylesheet"
@@ -22,12 +22,17 @@
    <div id="RecentSearches">
       <span type="button" id="ClearBtn" class="material-symbols-outlined">cancel</span>
       <a id="SearchList"></a>
+      <h3 class="light-white-text">Recent Search</h3>
    </div>
 
    <div id="WelcomeMsg" style="display: block">
       <h1 class="light-white-text">
-         Search for a <b class="blue-text">City</b> or use your <b class="blue-text">Location</b>
+         Welcome to <b class="blue-text">What The Fog</b>
       </h1>
+      <p class="light-white-text">
+         Search for a <b class="blue-text">City</b> or use your <b class="blue-text">Location</b> to get
+         <b class="blue-text">Weather Data</b>
+      </p>
       <img src="Images/placeholder-black-invert.png">
    </div>
 
@@ -47,22 +52,23 @@
       <div id="WeatherDetails">
 
          <div class="box">
-            <h1 class="light-white-text">humidity</h1>
+            <p class="light-white-text">Humidity</p>
             <p id="HumidityDisplay" class="blue-text"></p>
          </div>
 
          <div class="box">
-            <h1 class="light-white-text">temperature</h1>
+            <p class="light-white-text">Temperature</p>
             <p id="TemperatureDisplay" class="blue-text"></p>
          </div>
 
          <div class="box">
-            <h1 class="light-white-text">wind speed</h1>
+            <p class="light-white-text">Wind Speed</p>
             <p id="WindSpeedDisplay" class="blue-text"></p>
          </div>
 
       </div>
    </div>
+
 </body>
 
 </html>

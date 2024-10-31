@@ -91,7 +91,7 @@ $(document).ready(() => {
       DOC.DISPLAY.WEATHER.CITY.text(name);
       DOC.DISPLAY.WEATHER.HUMIDITY.text(`${humidity}%`);
       DOC.DISPLAY.WEATHER.WIND.text(`${Math.floor(speed * 3.6)} km/h`);
-      DOC.DISPLAY.WEATHER.TEMPERATURE.text(`${Math.floor(((temp - 273.15) * 9 / 5) + 32)}°F-${Math.floor(temp - 273.15)}°C`);
+      DOC.DISPLAY.WEATHER.TEMPERATURE.text(`${Math.floor(((temp - 273.15) * 9 / 5) + 32)}°F - ${Math.floor(temp - 273.15)}°C`);
    };
 
    const saveSearch = (city) => {
@@ -128,9 +128,7 @@ $(document).ready(() => {
          Error("", "none", "block");
       };
       errorCallback = () => {
-         Error(
-            "Location access denied", "block", "none",
-            "Please press allow this site to use location")
+         Error("Location access denied", "block", "none", "Press allow this site to use location")
       };
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
    });

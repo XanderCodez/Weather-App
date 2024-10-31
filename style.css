@@ -86,12 +86,16 @@ a:hover {
    color: #ff0000;
 }
 
+#WelcomeMsg {
+   font-size: 2rem;
+}
+
 #WelcomeMsg img {
    max-width: 1300px;
    filter: hue-rotate(22deg) opacity(0.5) brightness(1.5) saturate(0.7);
    mix-blend-mode: screen;
    border: 2px solid;
-   border-color: #202124;
+   border-color: #525252;
    border-radius: 50px;
    margin: 20px;
 }
@@ -100,7 +104,7 @@ a:hover {
    max-width: 300px;
    border: 2px solid;
    border-color: #202124;
-   border-radius: 50px;
+   border-radius: 25px;
    background-color: #00000042;
 }
 
@@ -128,7 +132,6 @@ a:hover {
 
 .light-white-text {
    font-weight: 300;
-   font-size: 3rem;
    color: #9aa0a6;
 }
 
